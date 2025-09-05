@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Tasmay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #2e1a47);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      transition: background 2s ease;
+    }
+    #startBalloon {
+      width: 100px;
+      height: 130px;
+      background: #ff4d4d;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(255,0,0,0.7);
+    }
+    #startBalloon::after {
+      content: "";
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+      background: #fff;
+    }
+    #caption {
+      position: absolute;
+      top: 70%;
+      font-size: 1.8rem;
+      color: #ff66cc;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff66cc;
+      animation: bounce 1s infinite;
+      font-weight: 900;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .hidden { display: none; }
+    h1 {
+      font-size: 3.8rem;
+      color: #fff;
+      text-shadow: 0 0 15px #ff66cc, 0 0 30px #ff3399;
+      animation: glow 2s infinite alternate;
+      text-align: center;
+      font-weight: 900;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 15px #ff66cc, 0 0 30px #ff99ff; }
+      to { text-shadow: 0 0 30px #66ffcc, 0 0 60px #ffccff; }
+    }
+    .photo-frame {
+      margin: 20px auto;
+      border: 12px solid #fff;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(255,255,255,0.7);
+      width: 300px;
+      position: relative;
+      background: #222;
+    }
+    .photo-frame img { width: 100%; display: block; }
+    .decor { position: absolute; width: 60px; height: 60px; }
+    .dog { top: -30px; left: -30px; }
+    .cat { bottom: -30px; right: -30px; }
+    .dog2 { bottom: -30px; left: -30px; }
+    .cat2 { top: -30px; right: -30px; }
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      animation: floatUp 10s infinite ease-in;
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #fff;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      animation: fall 4s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+    #playButton {
+      background: #ff3399;
+      color: white;
+      font-size: 1.2rem;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 20px #ff66cc;
+    }
+  </style>
+</head>
+<body>
+  <!-- Click Balloon -->
+  <div>
+    <div id="startBalloon" onclick="startSurprise()"></div>
+    <div id="caption">🎈 Pop the Balloon 🎈</div>
+  </div>
+
+  <!-- Surprise content -->
+  <div id="surprise" class="hidden">
+    <h1>🎉 Happy Birthday Little Tasmay 🎂</h1>
+    <div class="photo-frame">
+      <img src="tsamy photo.jfif" alt="Tasmay Family Photo">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="decor dog">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="decor dog2">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" class="decor cat">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" class="decor cat2">
+    </div>
+
+    <!-- Background birthday song -->
+    <audio id="song" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2023/03/06/audio_f2b9dfc1be.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Funny balloon pop sound -->
+    <audio id="pop">
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9d6237f87a.mp3?filename=pop-94319.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Cute effect sound -->
+    <audio id="cute">
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_2b2a0d3cbb.mp3?filename=kids-cheer-14546.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Fallback button -->
+    <button id="playButton" onclick="playMusic()">▶️ Play Music 🎵</button>
+
+    <!-- Balloons -->
+    <div class="balloon" style="left: 10%; background: #ff4d4d; animation-duration: 7s;"></div>
+    <div class="balloon" style="left: 30%; background: #4da6ff; animation-duration: 9s;"></div>
+    <div class="balloon" style="left: 50%; background: #33cc33; animation-duration: 11s;"></div>
+    <div class="balloon" style="left: 70%; background: #ffcc00; animation-duration: 8s;"></div>
+    <div class="balloon" style="left: 90%; background: #ff66cc; animation-duration: 10s;"></div>
+  </div>
+
+  <script>
+    function startSurprise() {
+      document.getElementById("startBalloon").classList.add("hidden");
+      document.getElementById("caption").classList.add("hidden");
+      document.getElementById("surprise").classList.remove("hidden");
+
+      // play pop sound then cheer
+      let pop = document.getElementById("pop");
+      let cute = document.getElementById("cute");
+
+      pop.play().catch(()=>{});
+      pop.onended = ()=> cute.play().catch(()=>{});
+
+      // background color animation
+      let colors = ["#0f0f0f", "#1a1a2e", "#2e1a47", "#3b0a45", "#0a3b45"];
+      let i = 0;
+      setInterval(() => {
+        document.body.style.background = colors[i % colors.length];
+        i++;
+      }, 4000);
+    }
+
+    function playMusic() {
+      let song = document.getElementById("song");
+      song.play().catch(()=>{});
+      document.getElementById("playButton").style.display = "none"; // hide after play
+    }
+  </script>
+</body>
+</html>
